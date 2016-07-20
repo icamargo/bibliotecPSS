@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css"></link>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+        <h:outputStylesheet library="css" name="sweetalert.css"/>
+        <h:outputScript library="js" name="sweetalert.min.js"/>
+    </h:head>
+    
+    <h:body styleClass="cyan lighten-5">
+        <div class="valign-wrapper" id="login-page">
+            <div class="container">
+                <div class="center-align">
+                    <div class="row">
+                        <div class="col s6 offset-s3">
+                            <div class="card">
+                                <div class="card-content" style="height: 400px">
+                                        <img class="responsive-img" style="max-width: 80px;" src="http://image.flaticon.com/icons/svg/29/29302.svg"/>
+                                        <div class="left-align">
+                                            <h:form id="login-form">
+                                                <p:growl autoUpdate="true"/>
+                                                <div class="col s12 input-field">
+                                                    <h:inputText id="email" value="#{loginControle.usuario.email}" required="true" requiredMessage="É necessario o e-mail"/>
+                                                    <h:outputLabel for="email" value="Email"/>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <h:inputSecret id="senha" value="#{loginControle.usuario.senha}" required="true" requiredMessage="É necessario a senha"/>
+                                                    <h:outputLabel for="senha" value="Smail"/>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <p:commandLink value="Login" actionListener="#{loginControle.login}" styleClass="btn btn-large" oncomplete="handleLoginRequest(args)" />                               
+                                                </div>                                               
+                                            </h:form>
+                                            <h:form>
+                                                <div class="col s12 input-field">         
+                                                    <h:commandLink value="Casdastar usuario" action="/faces/cadastrarUser.xhtml"/>
+                                                    <p></p>
+                                                    <h:commandLink value="Buscar livro"/>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>                            
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).on("ready",function(){
+               $("#login-page").css({'height':window.innerHeight + 'px'});
+            });
+        </script>
+        <script type="text/javascript">  
+            function handleLoginRequest(args) {  
+                if(args.validationFailed || !args.loggedIn) {  
+                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
+                } else {  
+                    dlg.hide();  
+                    jQuery('#loginLink').fadeOut();
+                    window.location = "/faces/index.xhtml";
+                }  
+            }  
+        </script>
+    </h:body>
+</html>
+
