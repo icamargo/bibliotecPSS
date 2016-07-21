@@ -15,8 +15,14 @@
         <h:form>
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Cadastrar usuario" url="/faces/cadastrarUser.xhtml" />
-                <p:menuitem value="Gerenciar usuarios" url="/faces/gerenciarUser.xhtml" />
+                <p:submenu label="Usuários">
+                    <p:menuitem value="Cadastrar usuario" url="/faces/cadastrarUser.xhtml" />
+                    <p:menuitem value="Gerenciar usuarios" url="/faces/gerenciarUser.xhtml" />
+                </p:submenu>
+                <p:submenu label="Acervo">
+                    <p:menuitem value="Cadastrar Item" url="/faces/cadastrarItem.xhtml"/>
+                    <p:menuitem value="Listar Itens"/>
+                </p:submenu>
             </p:menubar>
         </h:form>
     </h:body>
