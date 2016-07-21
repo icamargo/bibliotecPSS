@@ -11,5 +11,7 @@
     <mapping class="entidade.Usuario"/>
     <mapping class="entidade.Pessoa"/>
     <mapping class="entidade.Balconista"/>
+    <mapping class="entidade.ItemPrototype"/>
+    <mapping class="entidade.LivroPrototype"/>
   </session-factory>
 </hibernate-configuration>
