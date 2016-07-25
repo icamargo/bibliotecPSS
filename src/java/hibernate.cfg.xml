@@ -13,5 +13,7 @@
     <mapping class="entidade.Balconista"/>
     <mapping class="entidade.ItemPrototype"/>
     <mapping class="entidade.LivroPrototype"/>
+    <mapping class="entidade.AcademicoPrototype"/>
+    <mapping class="entidade.PeriodicoPrototype"/>
   </session-factory>
 </hibernate-configuration>

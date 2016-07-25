@@ -2,9 +2,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Cadastro de Item</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+            $(function(){
+                
+                $("#tipo").change(function(){
+                   $("div[divTipo]").show();
+                   $("div[divLivro]").hide();
+                   $("div[divPeriodico]").hide();
+                   $("div[divAcademico]").hide();
+                   if($("#tipo").select() === "livro"){
+                    $("div[divLivro]").show();
+                   }
+                   else if($("#tipo").select() === "academico"){
+                       $("div[divAcademico]").show();
+                   }
+                   else if($("#tipo").select() === "periodico"){
+                       $("div[divPeriodico]").show();
+                   }
+                });
+                
+            });
+        </script>
     </h:head>
     <h:body>
         <center>
@@ -13,40 +36,40 @@
                     <p:messages id="mensagens" showDetail="true" autoUpdate="true" />
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Nome: "/>
-                        <p:inputText id="nomeTxt" value="#{controleItem.livro.nome}" required="true" label="Nome"/>
-                        
-                        <p:outputLabel value="Status: "/>
-                        <p:inputText id="statusTxt" value="#{controleItem.livro.status}" required="true" label="Status"/>
-                        
-                        <p:outputLabel value="Edicao: "/>
-                        <p:inputText id="edicaoTxt" value="#{controleItem.livro.edicao}"/>
+                            <p:inputText id="nomeTxt" value="#{controleItem.academico.nome}" required="true" label="Nome"/>
 
-                        <p:outputLabel value="Autor: "/>
-                        <p:inputText value="#{controleItem.livro.autor}"/>
+                            <p:outputLabel value="Status: "/>
+                            <p:inputText id="statusTxt" value="#{controleItem.academico.status}" required="true" label="Status"/>
 
-                        <p:outputLabel value="Editora: "/>
-                        <p:inputText id="editoraTxt" value="#{controleItem.livro.editora}" required="true" label="Editora"/>
+                            <p:outputLabel value="Edicao: "/>
+                            <p:inputText id="edicaoTxt" value="#{controleItem.academico.edicao}"/>
 
-                        <p:outputLabel value="Volume: "/>
-                        <p:inputText value="#{controleItem.livro.volume}"/>
+                            <p:outputLabel value="Autor: "/>
+                            <p:inputText value="#{controleItem.academico.autor}"/>
 
-                        <p:outputLabel value="Ano Publicação: "/>
-                        <p:inputText value="#{controleItem.livro.anoPublicacao}"/>
+                            <p:outputLabel value="Editora: "/>
+                            <p:inputText id="editoraTxt" value="#{controleItem.academico.editora}" required="true" label="Editora"/>
 
-                        <p:outputLabel value="ISBN: "/>
-                        <p:inputText value="#{controleItem.livro.isbn}"/>
+                            <p:outputLabel value="Volume: "/>
+                            <p:inputText value="#{controleItem.academico.volume}"/>
 
-                        <p:outputLabel value="Numero de Páginas: "/>
-                        <p:inputText value="#{controleItem.livro.numPaginas}"/>
+                            <p:outputLabel value="Ano Publicação: "/>
+                            <p:inputText value="#{controleItem.academico.anoPublicacao}"/>
 
-                        <p:outputLabel value="Origem: "/>
-                        <p:inputText value="#{controleItem.livro.origem}"/>
+                            <p:outputLabel value="Numero de Páginas: "/>
+                            <p:inputText value="#{controleItem.academico.numPaginas}"/>
 
-                        <p:outputLabel value="Valor multa dia Atraso: "/>
-                        <p:inputText value="#{controleItem.livro.valorMultaDiaAtraso}"/>
+                            <p:outputLabel value="Origem: "/>
+                            <p:inputText value="#{controleItem.academico.origem}"/>
 
-                        <h:inputHidden/>
-                        <h:commandButton value="Cadastrar" action="#{controleItem.adicionarLivro}"/>
+                            <p:outputLabel value="Valor multa dia Atraso: "/>
+                            <p:inputText value="#{controleItem.academico.valorMultaDiaAtraso}"/>
+
+                            <p:outputLabel value="Modalidade: "/>
+                            <p:inputText value="#{controleItem.academico.modalidade}"/>
+
+                            <h:inputHidden/>
+                            <h:commandButton value="Cadastrar" action="#{controleItem.adicionarAcademico}"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>

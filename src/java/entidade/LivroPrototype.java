@@ -5,7 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue (value = "livro")
+@DiscriminatorValue (value = "Livro")
 public class LivroPrototype extends ItemPrototype{
     private int isbn;
     
@@ -13,10 +13,6 @@ public class LivroPrototype extends ItemPrototype{
     }
     public LivroPrototype(LivroPrototype livroPrototype){
         this.isbn = livroPrototype.getIsbn();
-    }
-
-    public LivroPrototype(int isbn) {
-        this.isbn = isbn;
     }
 
     public LivroPrototype(int isbn, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, float valorMultaDiaAtraso) {
