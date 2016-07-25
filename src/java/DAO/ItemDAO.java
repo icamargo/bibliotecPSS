@@ -4,7 +4,6 @@ package DAO;
 import static controle.ControleItem.FILTRO_AUTOR;
 import static controle.ControleItem.FILTRO_NOME;
 import static controle.ControleItem.FILTRO_NOME_AUTOR;
-import static controle.ControleItem.FILTRO_NUMCATALOGO;
 import static controle.ControleItem.FILTRO_TIPO;
 import static controle.ControleItem.FILTRO_TIPO_AUTOR;
 import static controle.ControleItem.FILTRO_TIPO_NOME;

@@ -14,14 +14,13 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ControleItem {
     public static final int SEM_FILTRO = 0;
-    public static final int FILTRO_NUMCATALOGO = 1;
-    public static final int FILTRO_TIPO_NOME_AUTOR = 2;
-    public static final int FILTRO_TIPO_NOME = 3;
-    public static final int FILTRO_TIPO_AUTOR = 4;
-    public static final int FILTRO_TIPO = 5;
-    public static final int FILTRO_NOME_AUTOR = 6;
-    public static final int FILTRO_NOME = 7;
-    public static final int FILTRO_AUTOR = 8;
+    public static final int FILTRO_TIPO_NOME_AUTOR = 1;
+    public static final int FILTRO_TIPO_NOME = 2;
+    public static final int FILTRO_TIPO_AUTOR = 3;
+    public static final int FILTRO_TIPO = 4;
+    public static final int FILTRO_NOME_AUTOR = 5;
+    public static final int FILTRO_NOME = 6;
+    public static final int FILTRO_AUTOR = 7;
     
     private LivroPrototype livro = new LivroPrototype();
     private AcademicoPrototype academico = new AcademicoPrototype();
