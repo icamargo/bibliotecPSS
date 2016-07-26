@@ -27,14 +27,13 @@ public class ControleItem {
     private PeriodicoPrototype periodico = new PeriodicoPrototype();
     
     LivroPrototype prototipoLivro = new LivroPrototype();
-    AcademicoPrototype prototipoacademico = new AcademicoPrototype();
+    AcademicoPrototype prototipoAcademico = new AcademicoPrototype();
     PeriodicoPrototype prototipoPeriodico = new PeriodicoPrototype();
     
     private String filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo;
     
     private final ItemDAO itemDAO = new ItemDAO();
     private List itens;
-    private String tipoItem;
     
     public ControleItem(){
     }
@@ -45,7 +44,7 @@ public class ControleItem {
         return "index";
     }
     public String adicionarAcademico(){
-        ItemPrototype academicoNovo = prototipoacademico.clonar();
+        ItemPrototype academicoNovo = prototipoAcademico.clonar();
         academicoNovo = academico;
         itemDAO.add(academicoNovo);
         return "index";
@@ -167,10 +166,6 @@ public class ControleItem {
     
     public LivroPrototype getLivro() {
         return livro;
-    }
-
-    public String getTipoItem() {
-        return tipoItem;
     }
 
     public AcademicoPrototype getAcademico() {

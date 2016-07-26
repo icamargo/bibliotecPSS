@@ -12,7 +12,6 @@
         <center>
             <h:form>
                 <p:panel id="filtros" header="Filtros" style="margin-bottom: auto">
-                    <p:messages id="mensagens" showDetail="true" autoUpdate="true" />
 
                     <p:outputLabel value="Número de Catálogo: " />
                     <p:inputText id="filtroCpf" value="#{controleItem.filtroNumCatalogo}"/>
@@ -23,9 +22,9 @@
                     <p:outputLabel value="Tipo do Item: " />
                     <p:selectOneMenu id="filtroTipo" value="#{controleItem.filtroTipo}">
                         <f:selectItem itemLabel="" itemValue=""/>
-                        <f:selectItem itemLabel="Livro" itemValue="livro"/>
-                        <f:selectItem itemLabel="Periodico" itemValue="periodico"/>
-                        <f:selectItem itemLabel="Acadêmico" itemValue="academico"/>
+                        <f:selectItem itemLabel="Livro" itemValue="Livro"/>
+                        <f:selectItem itemLabel="Periodico" itemValue="Periodico"/>
+                        <f:selectItem itemLabel="Acadêmico" itemValue="Academico"/>
                     </p:selectOneMenu>
                     
                     <p:outputLabel value="  "/>

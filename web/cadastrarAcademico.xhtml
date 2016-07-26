@@ -5,37 +5,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro de Item</title>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
-            $(function(){
-                
-                $("#tipo").change(function(){
-                   $("div[divTipo]").show();
-                   $("div[divLivro]").hide();
-                   $("div[divPeriodico]").hide();
-                   $("div[divAcademico]").hide();
-                   if($("#tipo").select() === "livro"){
-                    $("div[divLivro]").show();
-                   }
-                   else if($("#tipo").select() === "academico"){
-                       $("div[divAcademico]").show();
-                   }
-                   else if($("#tipo").select() === "periodico"){
-                       $("div[divPeriodico]").show();
-                   }
-                });
-                
-            });
-        </script>
+        <title>Cadastro de Artigo Acadêmico</title>
     </h:head>
     <h:body>
         <center>
             <h:form>
-                <p:panel id="cadastro" header="Cadastro de Item" style="margin-bottom: auto">
+                <p:panel id="cadastro" header="Cadastro de Artigo Acadêmico" style="margin-bottom: auto">
                     <p:messages id="mensagens" showDetail="true" autoUpdate="true" />
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Nome: "/>
+                            <p:outputLabel value="Nome: "/>
                             <p:inputText id="nomeTxt" value="#{controleItem.academico.nome}" required="true" label="Nome"/>
 
                             <p:outputLabel value="Status: "/>

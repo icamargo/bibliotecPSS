@@ -9,7 +9,10 @@ import static controle.ControleItem.FILTRO_TIPO_AUTOR;
 import static controle.ControleItem.FILTRO_TIPO_NOME;
 import static controle.ControleItem.FILTRO_TIPO_NOME_AUTOR;
 import static controle.ControleItem.SEM_FILTRO;
+import entidade.AcademicoPrototype;
 import entidade.ItemPrototype;
+import entidade.LivroPrototype;
+import entidade.PeriodicoPrototype;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -46,12 +49,60 @@ public class ItemDAO {
             case SEM_FILTRO:
                 break;
             case FILTRO_TIPO_NOME_AUTOR:
+                switch(vlrFiltroTipo){
+                    case "Livro":
+                        cri = session.createCriteria(LivroPrototype.class);
+                        break;
+                    case "Academico":
+                        cri = session.createCriteria(AcademicoPrototype.class);
+                        break;
+                    case "Periodico":
+                        cri = session.createCriteria(PeriodicoPrototype.class);
+                        break;
+                }
+                cri.add(Restrictions.ilike("nome", vlrFiltroNome, MatchMode.ANYWHERE));
+                cri.add(Restrictions.ilike("autor", vlrFiltroAutor, MatchMode.ANYWHERE));
                 break;
             case FILTRO_TIPO_NOME:
+                switch(vlrFiltroTipo){
+                    case "Livro":
+                        cri = session.createCriteria(LivroPrototype.class);
+                        break;
+                    case "Academico":
+                        cri = session.createCriteria(AcademicoPrototype.class);
+                        break;
+                    case "Periodico":
+                        cri = session.createCriteria(PeriodicoPrototype.class);
+                        break;
+                }
+                cri.add(Restrictions.ilike("nome", vlrFiltroNome, MatchMode.ANYWHERE));
                 break;
             case FILTRO_TIPO_AUTOR:
+                switch(vlrFiltroTipo){
+                    case "Livro":
+                        cri = session.createCriteria(LivroPrototype.class);
+                        break;
+                    case "Academico":
+                        cri = session.createCriteria(AcademicoPrototype.class);
+                        break;
+                    case "Periodico":
+                        cri = session.createCriteria(PeriodicoPrototype.class);
+                        break;
+                }
+                cri.add(Restrictions.ilike("autor", vlrFiltroAutor, MatchMode.ANYWHERE));
                 break;
             case FILTRO_TIPO:
+                switch(vlrFiltroTipo){
+                    case "Livro":
+                        cri = session.createCriteria(LivroPrototype.class);
+                        break;
+                    case "Academico":
+                        cri = session.createCriteria(AcademicoPrototype.class);
+                        break;
+                    case "Periodico":
+                        cri = session.createCriteria(PeriodicoPrototype.class);
+                        break;
+                }
                 break;
             case FILTRO_NOME_AUTOR:
                 cri.add(Restrictions.ilike("nome", vlrFiltroNome, MatchMode.ANYWHERE));
