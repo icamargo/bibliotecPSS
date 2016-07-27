@@ -17,7 +17,6 @@ public abstract class ItemPrototype implements Serializable{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private int numeroCatalogo;
     private String nome;
-    @Column(length = 20)
     private String status;
     private int edicao;
     private String autor;

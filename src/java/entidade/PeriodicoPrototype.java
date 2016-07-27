@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue (value = "Periodico")
 public class PeriodicoPrototype extends ItemPrototype{
-    private int issn;
+    private String issn;
     private String tipo;
     
     public PeriodicoPrototype(){
@@ -17,7 +17,7 @@ public class PeriodicoPrototype extends ItemPrototype{
         this.issn = periodicoPrototype.getIssn();
         this.tipo = periodicoPrototype.getTipo();
     }
-    public PeriodicoPrototype(int issn, String tipo, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, float valorMultaDiaAtraso) {
+    public PeriodicoPrototype(String issn, String tipo, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, float valorMultaDiaAtraso) {
         super(numeroCatalogo, nome, status, edicao, autor, editora, volume, anoPublicacao, numPaginas, origem, valorMultaDiaAtraso);
         this.issn = issn;
         this.tipo = tipo;
@@ -27,7 +27,7 @@ public class PeriodicoPrototype extends ItemPrototype{
     public PeriodicoPrototype clonar(){
         return new PeriodicoPrototype(this);
     }
-    public int getIssn() {
+    public String getIssn() {
         return issn;
     }
 
@@ -35,7 +35,7 @@ public class PeriodicoPrototype extends ItemPrototype{
         return tipo;
     }
 
-    public void setIssn(int issn) {
+    public void setIssn(String issn) {
         this.issn = issn;
     }
 

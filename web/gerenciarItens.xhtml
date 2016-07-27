@@ -12,7 +12,6 @@
         <center>
             <h:form>
                 <p:panel id="filtros" header="Filtros" style="margin-bottom: auto">
-
                     <p:outputLabel value="Número de Catálogo: " />
                     <p:inputText id="filtroCpf" value="#{controleItem.filtroNumCatalogo}"/>
                     
@@ -110,6 +109,12 @@
                             </f:facet>
                             <h:outputText value="#{item.valorMultaDiaAtraso}"/>
                         </p:column>
+                        <p:column>
+                        <f:facet name="header">
+                            Ações
+                        </f:facet>
+                            <h:commandButton value="Acessar Item" action="#{controleItem.exibirItem(item)}"/>
+                    </p:column>
                     </p:dataTable>
                 </p:panel>
                 <br>

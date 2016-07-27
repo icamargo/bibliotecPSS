@@ -8,7 +8,6 @@ import static controle.ControleItem.FILTRO_TIPO;
 import static controle.ControleItem.FILTRO_TIPO_AUTOR;
 import static controle.ControleItem.FILTRO_TIPO_NOME;
 import static controle.ControleItem.FILTRO_TIPO_NOME_AUTOR;
-import static controle.ControleItem.SEM_FILTRO;
 import entidade.AcademicoPrototype;
 import entidade.ItemPrototype;
 import entidade.LivroPrototype;
@@ -46,8 +45,7 @@ public class ItemDAO {
         trans = session.beginTransaction();
         Criteria cri = session.createCriteria(ItemPrototype.class);
         switch(tipoFiltro){
-            case SEM_FILTRO:
-                break;
+            //sem filtro não faz nada
             case FILTRO_TIPO_NOME_AUTOR:
                 switch(vlrFiltroTipo){
                     case "Livro":
@@ -117,6 +115,15 @@ public class ItemDAO {
         }
         this.lista = cri.list();
         return lista;
+    }
+    public String getTipoItem(int numCatalogo){
+        String tipoItem, consulta;
+        
+        consulta = "SELECT DTYPE FROM ITEM WHERE numeroCatalogo = :p";
+        session = HibernateUtil.getSessionFactory().openSession();
+        trans = session.beginTransaction();
+        tipoItem = session.createQuery(consulta).setParameter("p", numCatalogo).toString();
+        return tipoItem;
     }
     
     
