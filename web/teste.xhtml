@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <!--feitor por pedro-->     
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Cadastro</title>
+        <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
+        <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
+        <link href="recursos/css/theme.css" rel="stylesheet"></link>
+        <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
+
+    </h:head>
+    <h:body style="background-color: #C9DAE1">
+        <center>
+        <div class="container">
+            <div class="panel panel-primary" style="width: 500px">
+                <div class="panel-heading" align="center">
+                    <h3>Cadastro</h3>
+                </div>
+                <h:form>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="nome">Nome</span>
+                            <p:inputText type="text" value="#{pessoaControl.usuario.nome}" class="form-control" required="true"
+                                         requiredMessage="É necessário nome" />
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="cpf">CPF</span>
+                            <p:inputMask value="#{pessoaControl.usuario.cpf}" mask="999.999.999-99" required="true" class="form-control"
+                                         requiredMessage="É necessário cpf"/>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="rg">RG</span>
+                            <p:inputText type="text" value="#{pessoaControl.usuario.rg}" required="true" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="endereço">Endereço</span>
+                            <p:inputText type="text" value="#{pessoaControl.usuario.endereço}" class="form-control" required="true"
+                                         requiredMessage="É necessário endereço" />
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="dtNasc">Data de Nascimento</span>
+                            <p:inputMask value="#{pessoaControl.usuario.dtNasc}" mask="99/99/9999" required="true" class="form-control"
+                                         requiredMessage="É necessário data de nascimento"/>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="email">Email</span>
+                            <p:inputText type="text" value="#{pessoaControl.usuario.email}" class="form-control" required="true"
+                                         requiredMessage="É necessário email" />
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="telefone">Telefone</span>
+                            <p:inputMask value="#{pessoaControl.usuario.telefone}" mask="(99) 9999-9999" required="true" class="form-control"
+                                         requiredMessage="É necessário telefone"/>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            Senha
+                            <p:password id="password1" value="#{pessoaControl.usuario.senha}" match="password2" label="Password 1" required="true"
+                                        requiredMessage="É necessário senha"/>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            Confirmar senha
+                            <p:password id="password2" value="#{pessoaControl.usuario.senha}" label="Password 2" required="true"
+                                        requiredMessage="É necessário confirmar senha"/>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <h:commandLink value="Cadastrar" action="#{pessoaControl.adicionarUsuario}" class="btn btn-success"/>
+                </h:form>
+            </div>
+        </div>
+        </center>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="recursos/js/jquery.min.js"></script>
+        <script src="recursos/js/bootstrap.min.js"></script>
+        <script src="recursos/js/ie-emulation-modes-warning.js"></script>
+    </h:body>
+</html>

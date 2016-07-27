@@ -33,7 +33,7 @@ public class LoginControle {
         String pag;
         
         PessoaDAO pessoaDAO = new PessoaDAO();
-        usuario = pessoaDAO.buscar(usuario);
+        usuario = pessoaDAO.buscarU(usuario);
         
         if (usuario != null) {
             loggedIn = true;
