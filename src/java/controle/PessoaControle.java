@@ -43,8 +43,8 @@ public class PessoaControle {
       usuario.setEndereço(null);
       usuario.setNome(null);
       usuario.setRg(null);
-      usuario.setTelefone(null);
-      return "index";
+      usuario.setTelefone(null);     
+      return "login";
     }
     
     public String atualizarUsuario(){
@@ -84,11 +84,6 @@ public class PessoaControle {
     public String carregarUsuario(Usuario user){
         this.usuario = user;
         return "editarUser";
-    }
-    
-    public void addMessage(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
     public Usuario getUsuario() {

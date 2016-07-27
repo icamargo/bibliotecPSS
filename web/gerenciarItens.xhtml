@@ -5,13 +5,22 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Gerenciando Itens</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Gerenciar itens</title>
+        <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
+        <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
+        <link href="recursos/css/theme.css" rel="stylesheet"></link>
+        <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
     </h:head>
-    <h:body>
+    <h:body style="background-color: #9acfea">
         <center>
             <h:form>
-                <p:panel id="filtros" header="Filtros" style="margin-bottom: auto">
+<<<<<<< HEAD
+                    <div class="panel panel-primary" style="width: 850px">
+                    <div class="panel-heading"><h4>Filtros</h4></div>
+                    <div class="panel-body">
                     <p:outputLabel value="Número de Catálogo: " />
                     <p:inputText id="filtroCpf" value="#{controleItem.filtroNumCatalogo}"/>
                     
@@ -41,7 +50,9 @@
                     
                     <h:commandButton value="Filtrar" action="#{controleItem.listarItens()}"/>
                 </p:panel>
-                <p:panel id="itens" header="Itens" style="margin-bottom: auto">
+                <div class="panel panel-primary" style="width: 850px">
+                    <div class="panel-heading"><h4>Itens</h4></div>
+                    <div class="panel-body">
                     <p:dataTable value="#{controleItem.itens}" var="item" id="tabelaItens">
                         <p:column>
                             <f:facet name="header">
@@ -120,6 +131,113 @@
                 <br>
                 </br>
                 <p:commandButton value="Voltar" action="index.xhtml" id="voltar"/>
+=======
+                <div class="panel panel-primary" style="width: 850px">
+                    <div class="panel-heading"><h4>Filtros</h4></div>
+                    <div class="panel-body">
+
+                        <p:outputLabel value="Número de Catálogo: " />
+                        <p:inputText id="filtroCpf" value="#{controleItem.filtroNumCatalogo}"/>
+
+                        <br></br>
+                        <p:outputLabel value="Tipo do Item: " />
+                        <p:selectOneMenu id="filtroTipo" value="#{controleItem.filtroTipo}">
+                            <f:selectItem itemLabel="" itemValue=""/>
+                            <f:selectItem itemLabel="Livro" itemValue="Livro"/>
+                            <f:selectItem itemLabel="Periodico" itemValue="Periodico"/>
+                            <f:selectItem itemLabel="Acadêmico" itemValue="Academico"/>
+                        </p:selectOneMenu>
+
+                        <p:spacer width="30"/>
+                        <p:outputLabel value="Nome: " />
+                        <p:inputText id="filtroNome" value="#{controleItem.filtroNome}"/>
+
+                        <p:spacer width="30"/>
+                        <p:outputLabel value="Autor: " />
+                        <p:inputText id="filtroRg" value="#{controleItem.filtroAutor}"/>
+
+                        <br></br><br></br>
+                        <h:commandButton value="Filtrar" action="#{controleItem.listarItens()}" class="btn btn-success"/>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary" style="width: 1000px">
+                    <div class="panel-heading"><h4>Itens</h4></div>
+                    <div class="panel-body">
+
+                        <p:dataTable value="#{controleItem.itens}" var="item" id="tabelaItens">
+                            <p:column>
+                                <f:facet name="header">
+                                    Número de Catálogo
+                                </f:facet>
+                                <h:outputText value="#{item.numeroCatalogo}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Status
+                                </f:facet>
+                                <h:outputText value="#{item.status}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Nome
+                                </f:facet>
+                                <h:outputText value="#{item.nome}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Edição
+                                </f:facet>
+                                <h:outputText value="#{item.edicao}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Autor
+                                </f:facet>
+                                <h:outputText value="#{item.autor}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Editora
+                                </f:facet>
+                                <h:outputText value="#{item.editora}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Volume
+                                </f:facet>
+                                <h:outputText value="#{item.volume}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Ano de Publicação
+                                </f:facet>
+                                <h:outputText value="#{item.anoPublicacao}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Número de Páginas
+                                </f:facet>
+                                <h:outputText value="#{item.numPaginas}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Origem
+                                </f:facet>
+                                <h:outputText value="#{item.origem}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Valor Multa dia Atraso
+                                </f:facet>
+                                <h:outputText value="#{item.valorMultaDiaAtraso}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
+                <br></br>
+                <p:commandButton value="Voltar" action="index.xhtml" id="voltar" class="btn btn-danger"/>
+>>>>>>> origin/master
             </h:form>
         </center>
     </h:body>
