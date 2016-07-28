@@ -4,6 +4,7 @@ package entidade;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,26 +12,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@DiscriminatorColumn (name = "tipoItem")
 @Table (name = "Item")
 public abstract class ItemPrototype implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int numeroCatalogo;
-    private String nome;
-    private String status;
-    private int edicao;
-    private String autor;
-    private String editora;
-    private int volume;
-    private int anoPublicacao;
-    private int numPaginas;
-    private String origem;
-    private float valorMultaDiaAtraso;
+    protected int numeroCatalogo;
+    private boolean ativo;
+    protected String nome;
+    protected String status;
+    protected int edicao;
+    protected String autor;
+    protected String editora;
+    protected int volume;
+    protected int anoPublicacao;
+    protected int numPaginas;
+    protected String origem;
+    @Column(insertable=false, updatable=false)
+    protected String tipoItem;
+    protected float valorMultaDiaAtraso;
     
     public ItemPrototype(){
     }
 
-    public ItemPrototype(int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, float valorMultaDiaAtraso) {
+    public ItemPrototype(int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, String tipoItem, float valorMultaDiaAtraso) {
         this.numeroCatalogo = numeroCatalogo;
         this.nome = nome;
         this.status = status;
@@ -41,6 +46,7 @@ public abstract class ItemPrototype implements Serializable{
         this.anoPublicacao = anoPublicacao;
         this.numPaginas = numPaginas;
         this.origem = origem;
+        this.tipoItem = tipoItem;
         this.valorMultaDiaAtraso = valorMultaDiaAtraso;
     }
     public abstract ItemPrototype clonar();
@@ -132,6 +138,20 @@ public abstract class ItemPrototype implements Serializable{
     public void setValorMultaDiaAtraso(float valorMultaDiaAtraso) {
         this.valorMultaDiaAtraso = valorMultaDiaAtraso;
     }
+    public String getTipoItem() {
+        return tipoItem;
+    }
+
+    public void setTipoItem(String tipoItem) {
+        this.tipoItem = tipoItem;
+    }
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
     @Override
     public int hashCode() {
@@ -197,6 +217,4 @@ public abstract class ItemPrototype implements Serializable{
         }
         return true;
     }
-    
-    
 }

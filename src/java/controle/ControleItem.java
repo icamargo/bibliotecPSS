@@ -41,6 +41,7 @@ public class ControleItem {
         ItemPrototype livroNovo = prototipoLivro.clonar();
         livroNovo = livro;
         livroNovo.setStatus("Disponível");
+        livroNovo.setAtivo(true);
         itemDAO.add(livroNovo);
         return "index";
     }
@@ -48,6 +49,7 @@ public class ControleItem {
         ItemPrototype academicoNovo = prototipoAcademico.clonar();
         academicoNovo = academico;
         academicoNovo.setStatus("Disponível");
+        academicoNovo.setAtivo(true);
         itemDAO.add(academicoNovo);
         return "index";
     }
@@ -55,6 +57,7 @@ public class ControleItem {
         ItemPrototype periodicoNovo = prototipoPeriodico.clonar();
         periodicoNovo = periodico;
         periodicoNovo.setStatus("Disponível");
+        periodicoNovo.setAtivo(true);
         itemDAO.add(periodicoNovo);
         return "index";
     }
@@ -112,9 +115,8 @@ public class ControleItem {
     }
     public String exibirItem(ItemPrototype item){
         String tipoItem;
-        int numCatalogo = item.getNumeroCatalogo();
         
-        tipoItem = itemDAO.getTipoItem(numCatalogo);
+        tipoItem = item.getTipoItem();
         switch(tipoItem){
             case "Livro":
                 this.livro = (LivroPrototype) item;
@@ -127,6 +129,18 @@ public class ControleItem {
                 return "exibirAcademico";
         }
         return "";
+    }
+    public String atualizarLivro(){
+        itemDAO.atualizarItem(livro);
+        return "index";
+    }
+    public String atualizarAcademico(){ 
+        itemDAO.atualizarItem(academico);
+        return "index";
+    }
+    public String atualizarPeriodico(){
+        itemDAO.atualizarItem(periodico);
+        return "index";
     }
     public LivroPrototype getLivro() {
         return livro;

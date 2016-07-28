@@ -13,6 +13,8 @@ import entidade.ItemPrototype;
 import entidade.LivroPrototype;
 import entidade.PeriodicoPrototype;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,6 +31,8 @@ public class ItemDAO {
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
         session.save(item);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Item Cadastrado com Sucesso!"));
         trans.commit();
     }
 
@@ -40,6 +44,7 @@ public class ItemDAO {
         this.lista = cri.list();
         return lista;
     }
+    
     public List<ItemPrototype> getLista(int tipoFiltro, String vlrFiltroNome, String vlrFiltroAutor, String vlrFiltroTipo) {
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
@@ -116,16 +121,15 @@ public class ItemDAO {
         this.lista = cri.list();
         return lista;
     }
-    public String getTipoItem(int numCatalogo){
-        String tipoItem, consulta;
-        
-        consulta = "SELECT DTYPE FROM ITEM WHERE numeroCatalogo = :p";
+    
+    public void atualizarItem (ItemPrototype item){
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
-        tipoItem = session.createQuery(consulta).setParameter("p", numCatalogo).toString();
-        return tipoItem;
+        session.update(item);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Item Atualizado com Sucesso!"));
+        trans.commit();//confirmaçao
     }
-    
-    
+
     
 }

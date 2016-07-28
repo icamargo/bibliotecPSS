@@ -15,8 +15,8 @@ public class LivroPrototype extends ItemPrototype{
         this.isbn = livroPrototype.getIsbn();
     }
 
-    public LivroPrototype(String isbn, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, float valorMultaDiaAtraso) {
-        super(numeroCatalogo, nome, status, edicao, autor, editora, volume, anoPublicacao, numPaginas, origem, valorMultaDiaAtraso);
+    public LivroPrototype(String isbn, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, String tipoItem, float valorMultaDiaAtraso) {
+        super(numeroCatalogo, nome, status, edicao, autor, editora, volume, anoPublicacao, numPaginas, origem, tipoItem, valorMultaDiaAtraso);
         this.isbn = isbn;
     }
     @Override
