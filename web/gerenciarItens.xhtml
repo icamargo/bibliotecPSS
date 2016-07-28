@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="panel panel-primary" style="width: 1000px">
+                <div class="panel panel-primary" style="width: 1300px">
                     <div class="panel-heading"><h4>Itens</h4></div>
                     <div class="panel-body">
 
@@ -116,6 +116,12 @@
                                     Valor Multa dia Atraso
                                 </f:facet>
                                 <h:outputText value="#{item.valorMultaDiaAtraso}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Ação
+                                </f:facet>
+                                <h:commandButton value="Exibir Item" action="#{controleItem.exibirItem(item)}" class="btn btn-info"/>
                             </p:column>
                         </p:dataTable>
                     </div>

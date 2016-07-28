@@ -12,17 +12,16 @@
         <title>Cadastro</title>
         <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
         <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
-        <link href="recursos/css/theme.css" rel="stylesheet"></link>
         <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
 
     </h:head>
-    <h:body style="background-color: #9acfea">
+    <h:body style="background-color: #C1C1C1">
         <center>
-            <h:form>
-                <p:growl id="growl" showDetail="true" sticky="true" />
-                <div class="panel panel-primary" style="width: 500px">
+            <h:form >
+                <div class="panel panel-primary" style="width: 100%;">
                     <div class="panel-heading" align="center"><h3>Cadastro</h3></div>
                     <div class="panel-body">
+                        <p:messages id="mensagens" autoUpdate="true" />
                         <h:panelGrid columns="2">
                             <p:outputLabel value="Nome: "/>
                             <p:inputText id="nomeTxt" value="#{pessoaControl.usuario.nome}" required="true" label="Nome"/>
@@ -47,14 +46,16 @@
                             <p:password id="password1" value="#{pessoaControl.usuario.senha}" match="password2" label="Password 1" required="true"/>
                             <p:outputLabel value="Confirmar senha: "/>
                             <p:password id="password2" value="#{pessoaControl.usuario.senha}" label="Password 2" required="true"/>
-                            <h:inputHidden/><br></br>
-                            <p:commandLink value="Cadastrar" action="#{pessoaControl.adicionarUsuario}" update="growl" class="btn btn-success"/>      
+                            <br></br>
+
                         </h:panelGrid>
+                        <h:commandButton action="#{pessoaControl.adicionarUsuario}" value="Cadastrar" class="btn btn-success"/>
+                        <br></br><a href="login.xhtml">Voltar</a>
                     </div>
                 </div>
             </h:form>
         </center>
-        
+
         <script src="recursos/js/bootstrap.min.js"></script>
         <script src="recursos/js/ie-emulation-modes-warning.js"></script>
     </h:body>

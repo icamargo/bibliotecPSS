@@ -2,17 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <title>Cadastro de Livro</title>
+        <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
+        <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
+
     </h:head>
-    <h:body>
+    <h:body style="background-color: #C1C1C1">
         <center>
             <h:form>
-                <p:panel id="cadastro" header="Cadastro de Livro" style="margin-bottom: auto">
-                    <p:messages id="mensagens" showDetail="true" autoUpdate="true" />
-                    <h:panelGrid columns="2">
+                <div class="panel panel-primary" style="width: 100%;">
+                    <div class="panel-heading" align="center"><h3>Cadastro de Livro</h3></div>
+                    <div class="panel-body">
+                        <p:messages id="mensagens" autoUpdate="true" />
+                        <h:panelGrid columns="2">
                             <p:outputLabel value="Nome: "/>
                             <p:inputText id="nomeTxt" value="#{controleItem.livro.nome}" required="true" label="Nome"/>
 
@@ -46,11 +54,15 @@
                             <p:outputLabel value="ISBN: "/>
                             <p:inputText value="#{controleItem.livro.isbn}"/>
 
-                            <h:inputHidden/>
-                            <h:commandButton value="Cadastrar" action="#{controleItem.adicionarLivro}"/>
-                    </h:panelGrid>
-                </p:panel>
+                            <br></br>
+                        </h:panelGrid>
+                        <h:commandButton value="Cadastrar" action="#{controleItem.adicionarLivro}" class="btn btn-success"/>
+                    </div>
+                </div>
             </h:form>
         </center>
+
+        <script src="recursos/js/bootstrap.min.js"></script>
+        <script src="recursos/js/ie-emulation-modes-warning.js"></script>
     </h:body>
 </html>

@@ -5,14 +5,23 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <title>Cadastro de Artigo Acadêmico</title>
+        <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
+        <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
+        
     </h:head>
-    <h:body>
+    <h:body style="background-color: #C1C1C1">
         <center>
             <h:form>
-                <p:panel id="cadastro" header="Cadastro de Artigo Acadêmico" style="margin-bottom: auto">
-                    <p:messages id="mensagens" showDetail="true" autoUpdate="true" />
-                    <h:panelGrid columns="2">
+                <div class="panel panel-primary" style="width: 100%;">
+                    <div class="panel-heading" align="center"><h3>Cadastro de Artigo Acadêmico</h3></div>
+                    <div class="panel-body">
+                        <p:messages id="mensagens" autoUpdate="true" />
+                        <h:panelGrid columns="2">
                             <p:outputLabel value="Nome: "/>
                             <p:inputText id="nomeTxt" value="#{controleItem.academico.nome}" required="true" label="Nome"/>
 
@@ -45,12 +54,15 @@
 
                             <p:outputLabel value="Modalidade: "/>
                             <p:inputText value="#{controleItem.academico.modalidade}"/>
-
-                            <h:inputHidden/>
-                            <h:commandButton value="Cadastrar" action="#{controleItem.adicionarAcademico}"/>
-                    </h:panelGrid>
-                </p:panel>
+                            <br></br>
+                        </h:panelGrid>
+                        <h:commandButton value="Cadastrar" action="#{controleItem.adicionarAcademico}" class="btn btn-success"/>
+                    </div>
+                </div>
             </h:form>
         </center>
+
+        <script src="recursos/js/bootstrap.min.js"></script>
+        <script src="recursos/js/ie-emulation-modes-warning.js"></script>
     </h:body>
 </html>

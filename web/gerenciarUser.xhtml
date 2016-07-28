@@ -7,64 +7,86 @@
     <!--feito por tatiane-->
 
     <h:head>
-        <title>Gerenciar</title>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>Grenciar usuário</title>
+        <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
+        <link rel="stylesheet" href="recursos/css/bootstrap.css"></link>
+        <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
     </h:head>
-    <h:body>
+
+    <h:body style="background-color: #C1C1C1">
         <center>
-            <h:form>
-                <p:dataTable value="#{pessoaControl.listarUsuarios()}" var="user" id="tabela">
-                    <p:column>
-                        <f:facet name="header">
-                            Id
-                        </f:facet>
-                        <h:outputText value="#{user.id}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            Nome
-                        </f:facet>
-                        <h:outputText value="#{user.nome}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            CPF
-                        </f:facet>
-                        <h:outputText value="#{user.cpf}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            Email
-                        </f:facet>
-                        <h:outputText value="#{user.email}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            Situação
-                        </f:facet>
-                        <h:outputText value="#{user.situaçao}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            Ações
-                        </f:facet>
-                        <p:commandButton action="#{pessoaControl.removerUsuario(user)}" icon="ui-icon-close">
-                            <p:confirm header="Remação" message="Voce está certo disso?" icon="ui-icon-alert"/>
-                        </p:commandButton>
-
-                        <p:commandButton value="Atualizar" action="#{pessoaControl.carregarUsuario(user)}">
-                            <p:confirm header="Atualizaçao" message="Voce está certo disso?" icon="ui-icon-alert"/>
-                        </p:commandButton>
-
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                        </p:confirmDialog>
-                    </p:column>
-                </p:dataTable>
+            <h:form id="formAtt">
+                <div class="panel panel-primary" style="width: 100%">
+                    <div class="panel-heading"><h4>Usuários</h4></div>
+                    <div class="panel-body">
+                        <p:dataTable value="#{pessoaControl.listarUsuarios()}" var="user" id="tabelaAtt">
+                            <p:column>
+                                <f:facet name="header">
+                                    Id
+                                </f:facet>
+                                <h:outputText value="#{user.id}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Nome
+                                </f:facet>
+                                <h:outputText value="#{user.nome}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    CPF
+                                </f:facet>
+                                <h:outputText value="#{user.cpf}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Email
+                                </f:facet>
+                                <h:outputText value="#{user.email}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Situação
+                                </f:facet>
+                                <h:outputText value="#{user.situaçao}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Ação
+                                </f:facet>
+                                <p:commandButton action="#{pessoaControl.inativarUsuario(user)}" value="Ativar/Inativar" update=":formAtt:tabelaAtt" process="@form">
+                                    <p:confirm header="Inativação" message="Voce está certo disso?" icon="ui-icon-alert"/>
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Ação
+                                </f:facet>
+                                <p:commandButton value="Atualizar" action="#{pessoaControl.carregarUsuario(user)}">
+                                    <p:confirm header="Atualização" message="Voce está certo disso?" icon="ui-icon-alert"/>
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </div>
                 <p></p>
-                <p:commandButton value="Voltar" action="index.xhtml" id="back"/>
+                <a href="index.xhtml" class="btn btn-danger">Voltar</a>
             </h:form>
         </center>
+        
+        <script src="recursos/js/bootstrap.min.js"></script>
+        <script src="recursos/js/ie-emulation-modes-warning.js"></script>
     </h:body>
 </html>
 

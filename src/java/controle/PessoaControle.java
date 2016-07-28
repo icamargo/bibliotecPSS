@@ -7,9 +7,9 @@ package controle;
 
 import DAO.PessoaDAO;
 import entidade.Usuario;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -18,7 +18,6 @@ import javax.faces.context.FacesContext;
  *
  * @author Pedro
  */
-
 //feita por pedro
 @ManagedBean(name = "pessoaControl")
 @SessionScoped
@@ -29,63 +28,54 @@ public class PessoaControle {
      */
     public PessoaControle() {
     }
-    
+
     private Usuario usuario = new Usuario();
     private final PessoaDAO pessoaDAO = new PessoaDAO();
     private List listaUsuarios;
 
-    
-    public String adicionarUsuario(){
-      pessoaDAO.addUsuario(usuario);
-      usuario.setCpf(null);
-      usuario.setDtNasc(null);
-      usuario.setEmail(null);
-      usuario.setEndereço(null);
-      usuario.setNome(null);
-      usuario.setRg(null);
-      usuario.setTelefone(null);     
-      return "login";
+    public void adicionarUsuario() throws IOException {
+        pessoaDAO.addUsuario(usuario);
+        usuario = new Usuario();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
     }
-    
-    public String atualizarUsuario(){
-      pessoaDAO.updatePessoa(usuario);
-      usuario.setCpf(null);
-      usuario.setDtNasc(null);
-      usuario.setEmail(null);
-      usuario.setEndereço(null);
-      usuario.setNome(null);
-      usuario.setRg(null);
-      usuario.setTelefone(null);
-      return "index";
+
+    public void atualizarUsuario() throws IOException {
+        pessoaDAO.updatePessoa(usuario);
+        usuario = new Usuario();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
-    
-    public String removerUsuario(Usuario user){
+
+    public void removerUsuario(Usuario user) throws IOException {
         this.usuario = user;
         pessoaDAO.removePessoa(usuario);
-        usuario.setCpf(null);
-        usuario.setDtNasc(null);
-        usuario.setEmail(null);
-        usuario.setEndereço(null);
-        usuario.setNome(null);
-        usuario.setRg(null);
-        usuario.setTelefone(null);
-        return "index";
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
-    
-    public List listarUsuarios(){
+
+    public void inativarUsuario(Usuario user) {
+        this.usuario = user;
+        if (usuario.getSituaçao().equals("normal")) {
+            usuario.setSituaçao("inativo");
+        } else if (usuario.getSituaçao().equals("inativo")) {
+            usuario.setSituaçao("normal");
+        }
+        pessoaDAO.updatePessoa(usuario);
+        usuario = new Usuario();
+    }
+
+    public List listarUsuarios() {
         listaUsuarios = pessoaDAO.getList();
-        if(listaUsuarios == null){
+        if (listaUsuarios == null) {
             listaUsuarios = new DAO.PessoaDAO().getList();
         }
-        
+
         return listaUsuarios;
     }
-    
-    public String carregarUsuario(Usuario user){
+
+    public void carregarUsuario(Usuario user) throws IOException {
         this.usuario = user;
-        return "editarUser";
+        FacesContext.getCurrentInstance().getExternalContext().redirect("editarUser.xhtml");
     }
-    
+
     public Usuario getUsuario() {
         return usuario;
     }
