@@ -26,9 +26,9 @@ public class ControleItem {
     private AcademicoPrototype academico = new AcademicoPrototype();
     private PeriodicoPrototype periodico = new PeriodicoPrototype();
     
-    LivroPrototype prototipoLivro = new LivroPrototype();
-    AcademicoPrototype prototipoAcademico = new AcademicoPrototype();
-    PeriodicoPrototype prototipoPeriodico = new PeriodicoPrototype();
+    private LivroPrototype prototipoLivro = new LivroPrototype();
+    private AcademicoPrototype prototipoAcademico = new AcademicoPrototype();
+    private PeriodicoPrototype prototipoPeriodico = new PeriodicoPrototype();
     
     private String filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo;
     
@@ -40,18 +40,24 @@ public class ControleItem {
     public String adicionarLivro(){
         ItemPrototype livroNovo = prototipoLivro.clonar();
         livroNovo = livro;
+        livroNovo.setStatus("Disponível");
+        livroNovo.setAtivo(true);
         itemDAO.add(livroNovo);
         return "index";
     }
     public String adicionarAcademico(){
         ItemPrototype academicoNovo = prototipoAcademico.clonar();
         academicoNovo = academico;
+        academicoNovo.setStatus("Disponível");
+        academicoNovo.setAtivo(true);
         itemDAO.add(academicoNovo);
         return "index";
     }
     public String adicionarPeriodico(){
         ItemPrototype periodicoNovo = prototipoPeriodico.clonar();
         periodicoNovo = periodico;
+        periodicoNovo.setStatus("Disponível");
+        periodicoNovo.setAtivo(true);
         itemDAO.add(periodicoNovo);
         return "index";
     }
@@ -101,69 +107,41 @@ public class ControleItem {
             //não filtra por nada
             itens = itemDAO.getLista(SEM_FILTRO, filtroNome, filtroAutor, filtroTipo);
         }
-        
-        
-        
-        
-        
-        
-        /*
-        if (!(filtroTipo.equals(""))) {
-            if (!(filtroNome.equals(""))) {
-                if (!(filtroNumCatalogo.equals(""))) {
-                    if (!(filtroAutor.equals(""))) {
-                        //filtrar por tudo
-                        itens = itemDAO.getLista(TODOS_FILTROS, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-                    } else {
-                        //senao filtrar por tipo, nome e num catalogo
-                        itens = itemDAO.getLista(FILTRO_TIPO_NOME_NUMCATALOGO, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-                    }
-                } else {
-                    //filtra por tipo e nome
-                    itens = itemDAO.getLista(FILTRO_TIPO_NOME, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-                }
-            } else {
-                //filtra por tipo
-                itens = itemDAO.getLista(FILTRO_TIPO, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-            }
-        } else if (!(filtroNome.equals(""))) {
-            if (!(filtroNumCatalogo.equals(""))) {
-                if (!(filtroAutor.equals(""))) {
-                    //filtra por nome, numero de catalogo e autor
-                    itens = itemDAO.getLista(FILTRO_NOME_NUMCATALOGO_AUTOR, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-                } else {
-                    //filtra por nome e numero de catalogo
-                    itens = itemDAO.getLista(FILTRO_NOME_NUMCATALOGO, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-                }
-            } else {
-                //filtra por nome
-                itens = itemDAO.getLista(FILTRO_NOME, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-            }
-        } else if (!(filtroNumCatalogo.equals(""))) {
-            if (!(filtroAutor.equals(""))) {
-                //filtra por numero de catalogo e autor
-                itens = itemDAO.getLista(FILTRO_NUMCATALOGO_AUTOR, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-            } else {
-                //filtra por num de catalogo
-                itens = itemDAO.getLista(FILTRO_NUMCATALOGO, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-            }
-        } else if (!(filtroAutor.equals(""))) {
-            //filtra por autor
-            itens = itemDAO.getLista(FILTRO_AUTOR, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-        } else {
-            //não filtra por nada
-            itens = itemDAO.getLista(SEM_FILTRO, filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo);
-        }*/
-        
         //não tem itens cadastrados
-        //itens = itemDAO.getLista();
         if (itens == null) {
             itens = new DAO.ItemDAO().getLista(SEM_FILTRO, filtroNome, filtroAutor, filtroTipo);
         }
-        
         return itens;
     }
-    
+    public String exibirItem(ItemPrototype item){
+        String tipoItem;
+        
+        tipoItem = item.getTipoItem();
+        switch(tipoItem){
+            case "Livro":
+                this.livro = (LivroPrototype) item;
+                return "exibirLivro";
+            case "Periodico":
+                this.periodico = (PeriodicoPrototype) item;
+                return "exibirPeriodico";
+            case "Academico":
+                this.academico = (AcademicoPrototype) item;
+                return "exibirAcademico";
+        }
+        return "";
+    }
+    public String atualizarLivro(){
+        itemDAO.atualizarItem(livro);
+        return "index";
+    }
+    public String atualizarAcademico(){ 
+        itemDAO.atualizarItem(academico);
+        return "index";
+    }
+    public String atualizarPeriodico(){
+        itemDAO.atualizarItem(periodico);
+        return "index";
+    }
     public LivroPrototype getLivro() {
         return livro;
     }

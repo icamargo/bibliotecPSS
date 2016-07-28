@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue (value = "Livro")
 public class LivroPrototype extends ItemPrototype{
-    private int isbn;
+    private String isbn;
     
     public LivroPrototype(){
     }
@@ -15,8 +15,8 @@ public class LivroPrototype extends ItemPrototype{
         this.isbn = livroPrototype.getIsbn();
     }
 
-    public LivroPrototype(int isbn, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, float valorMultaDiaAtraso) {
-        super(numeroCatalogo, nome, status, edicao, autor, editora, volume, anoPublicacao, numPaginas, origem, valorMultaDiaAtraso);
+    public LivroPrototype(String isbn, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, String tipoItem, float valorMultaDiaAtraso) {
+        super(numeroCatalogo, nome, status, edicao, autor, editora, volume, anoPublicacao, numPaginas, origem, tipoItem, valorMultaDiaAtraso);
         this.isbn = isbn;
     }
     @Override
@@ -24,11 +24,11 @@ public class LivroPrototype extends ItemPrototype{
         return new LivroPrototype (this);
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
     

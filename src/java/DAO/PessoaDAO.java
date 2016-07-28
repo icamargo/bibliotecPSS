@@ -46,9 +46,9 @@ public class PessoaDAO {
     public void addUsuario(Usuario u) {
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
+        session.save(u);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Cadastrado com sucesso."));
-        session.save(u);
         trans.commit();
     }
 

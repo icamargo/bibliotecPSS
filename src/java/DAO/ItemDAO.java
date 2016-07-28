@@ -8,12 +8,13 @@ import static controle.ControleItem.FILTRO_TIPO;
 import static controle.ControleItem.FILTRO_TIPO_AUTOR;
 import static controle.ControleItem.FILTRO_TIPO_NOME;
 import static controle.ControleItem.FILTRO_TIPO_NOME_AUTOR;
-import static controle.ControleItem.SEM_FILTRO;
 import entidade.AcademicoPrototype;
 import entidade.ItemPrototype;
 import entidade.LivroPrototype;
 import entidade.PeriodicoPrototype;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -30,6 +31,8 @@ public class ItemDAO {
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
         session.save(item);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Item Cadastrado com Sucesso!"));
         trans.commit();
     }
 
@@ -41,13 +44,13 @@ public class ItemDAO {
         this.lista = cri.list();
         return lista;
     }
+    
     public List<ItemPrototype> getLista(int tipoFiltro, String vlrFiltroNome, String vlrFiltroAutor, String vlrFiltroTipo) {
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
         Criteria cri = session.createCriteria(ItemPrototype.class);
         switch(tipoFiltro){
-            case SEM_FILTRO:
-                break;
+            //sem filtro não faz nada
             case FILTRO_TIPO_NOME_AUTOR:
                 switch(vlrFiltroTipo){
                     case "Livro":
@@ -119,6 +122,14 @@ public class ItemDAO {
         return lista;
     }
     
-    
+    public void atualizarItem (ItemPrototype item){
+        session = HibernateUtil.getSessionFactory().openSession();
+        trans = session.beginTransaction();
+        session.update(item);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Item Atualizado com Sucesso!"));
+        trans.commit();//confirmaçao
+    }
+
     
 }
