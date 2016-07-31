@@ -4,12 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    <!--feitor por pedro-->     
+    <!--@autor Tatiane-->
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title>Cadastro</title>
+        <title>Cadastro de Usuário</title>
         <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
         <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
         <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
@@ -19,38 +19,50 @@
         <center>
             <h:form >
                 <div class="panel panel-primary" style="width: 100%;">
-                    <div class="panel-heading" align="center"><h3>Cadastro</h3></div>
+                    <div class="panel-heading" align="center"><h3>Cadastro de Usuário</h3></div>
                     <div class="panel-body">
                         <p:messages id="mensagens" autoUpdate="true" />
                         <h:panelGrid columns="2">
                             <p:outputLabel value="Nome: "/>
-                            <p:inputText id="nomeTxt" value="#{pessoaControl.usuario.nome}" required="true" label="Nome"/>
+                            <p:inputText id="nomeTxt" value="#{controlePessoa.usuario.nome}" required="true" label="Nome"/>
+                            
                             <p:outputLabel value="CPF: "/>
-                            <p:inputMask id="cpfTxt" value="#{pessoaControl.usuario.cpf}" mask="999.999.999-99" required=" true" label="CPF"/>
-                            <p:outputLabel value="Rg: "/>
-                            <p:inputText id="rgTxt" value="#{pessoaControl.usuario.rg}"/>
+                            <p:inputMask id="cpfTxt" value="#{controlePessoa.usuario.cpf}" mask="999.999.999-99" required=" true" label="CPF"/>
+                            
+                            <p:outputLabel value="RG: "/>
+                            <p:inputText id="rgTxt" value="#{controlePessoa.usuario.rg}"/>
+                            
                             <p:outputLabel value="Sexo: "/>
-                            <p:selectOneMenu value="#{pessoaControl.usuario.sexo}">
+                            <p:selectOneMenu value="#{controlePessoa.usuario.sexo}">
                                 <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
                                 <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
                             </p:selectOneMenu>
+                            
                             <p:outputLabel value="Endereço: "/>
-                            <p:inputText id="endereçoTxt" value="#{pessoaControl.usuario.endereço}" required="true" label="Endereço"/>
+                            <p:inputText id="endereçoTxt" value="#{controlePessoa.usuario.endereco}" required="true" label="Endereço"/>
+                            
                             <p:outputLabel value="Data de nascimento: "/>
-                            <p:inputMask id="dtNascTxt" value="#{pessoaControl.usuario.dtNasc}" mask="99/99/9999" required="true" label="Data"/>
+                            <p:inputMask id="dtNascTxt" value="#{controlePessoa.usuario.dataNascimento}" mask="99/99/9999" required="true" label="Data"/>
+                            
                             <p:outputLabel value="Email "/>
-                            <p:inputText id="emailTxt" value="#{pessoaControl.usuario.email}" required="true" label="Email"/>
+                            <p:inputText id="emailTxt" value="#{controlePessoa.usuario.email}" required="true" label="Email"/>
+                            
                             <p:outputLabel value="Telefone: "/>
-                            <p:inputMask id="telefoneTxt" value="#{pessoaControl.usuario.telefone}" mask="(99) 9999-9999" required="true" label="Telefone"/>
+                            <p:inputMask id="telefoneTxt" value="#{controlePessoa.usuario.telefone}" mask="(99) 9999-9999" required="true" label="Telefone"/>
+                            
                             <p:outputLabel value="Senha: "/>
-                            <p:password id="password1" value="#{pessoaControl.usuario.senha}" match="password2" label="Password 1" required="true"/>
+                            <p:password id="senha1" value="#{controlePessoa.usuario.senha}" match="senha2" label="Senha" required="true"/>
+                            
                             <p:outputLabel value="Confirmar senha: "/>
-                            <p:password id="password2" value="#{pessoaControl.usuario.senha}" label="Password 2" required="true"/>
+                            <p:password id="senha2" value="#{controlePessoa.usuario.senha}" label="senha2" required="true"/>
+                            
                             <br></br>
-
                         </h:panelGrid>
-                        <h:commandButton action="#{pessoaControl.adicionarUsuario}" value="Cadastrar" class="btn btn-success"/>
-                        <br></br><a href="login.xhtml">Voltar</a>
+                        <h:commandButton action="#{controlePessoa.adicionarUsuario}" value="Cadastrar" class="btn btn-success"/>
+                        
+                        <p:spacer width="30"/>
+                        
+                        <a href="index.xhtml" class="btn btn-danger" onclick="return confirm('Se voltar os dados não serão salvos! Deseja continuar?')">Voltar</a>
                     </div>
                 </div>
             </h:form>

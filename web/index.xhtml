@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-    <!--feito por tatiane-->
+    <!--@autor Tatiane-->
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title>Menu</title>
+        <title>Menu Principal</title>
         <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
         <link rel="stylesheet" href="recursos/css/bootstrap.css"></link>
         <style>
@@ -21,8 +21,12 @@
             <p:growl id="messages"/>
             <p:menubar>
                 <p:submenu label="Usuários">
-                    <p:menuitem value="Cadastrar usuario" url="/faces/cadastrarUser.xhtml" />
-                    <p:menuitem value="Gerenciar usuarios" url="/faces/gerenciarUser.xhtml" />
+                    <p:submenu label="Cadastros">
+                        <p:menuitem value="Balconista" url="/faces/cadastrarBalconista.xhtml"/>
+                        <p:menuitem value="Bibliotecário" url="/faces/cadastrarBibliotecario.xhtml"/>
+                        <p:menuitem value="Usuário" url="/faces/cadastrarUsuario.xhtml" />
+                    </p:submenu>
+                    <p:menuitem value="Listar Usuários" url="/faces/gerenciarPessoas.xhtml" />
                 </p:submenu>
                 <p:submenu label="Acervo">
                     <p:submenu label="Cadastros">

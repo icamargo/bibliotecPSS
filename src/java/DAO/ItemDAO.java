@@ -1,5 +1,8 @@
+/**
+ *
+ * @author Igor
+ */
 package DAO;
-//@author igor_
 
 import static controle.ControleItem.FILTRO_AUTOR;
 import static controle.ControleItem.FILTRO_NOME;
@@ -8,10 +11,12 @@ import static controle.ControleItem.FILTRO_TIPO;
 import static controle.ControleItem.FILTRO_TIPO_AUTOR;
 import static controle.ControleItem.FILTRO_TIPO_NOME;
 import static controle.ControleItem.FILTRO_TIPO_NOME_AUTOR;
+import static controle.ControleItem.SEM_FILTRO;
 import entidade.AcademicoPrototype;
 import entidade.ItemPrototype;
 import entidade.LivroPrototype;
 import entidade.PeriodicoPrototype;
+import java.io.IOException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -27,11 +32,12 @@ public class ItemDAO {
     private Transaction trans;
     private List<ItemPrototype> lista;
     
-    public void add(ItemPrototype item){
+    public void add(ItemPrototype item) throws IOException{
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
         session.save(item);
         FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().redirect("index.xhtml");
         context.addMessage(null, new FacesMessage("Item Cadastrado com Sucesso!"));
         trans.commit();
     }
@@ -50,7 +56,9 @@ public class ItemDAO {
         trans = session.beginTransaction();
         Criteria cri = session.createCriteria(ItemPrototype.class);
         switch(tipoFiltro){
-            //sem filtro não faz nada
+            case SEM_FILTRO:
+                //sem filtro não faz nada
+                break;
             case FILTRO_TIPO_NOME_AUTOR:
                 switch(vlrFiltroTipo){
                     case "Livro":
@@ -122,12 +130,13 @@ public class ItemDAO {
         return lista;
     }
     
-    public void atualizarItem (ItemPrototype item){
+    public void atualizarItem (ItemPrototype item) throws IOException{
         session = HibernateUtil.getSessionFactory().openSession();
         trans = session.beginTransaction();
         session.update(item);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Item Atualizado com Sucesso!"));
+        context.getExternalContext().redirect("gerenciarItens.xhtml");
         trans.commit();//confirmaçao
     }
 

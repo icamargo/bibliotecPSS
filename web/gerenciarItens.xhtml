@@ -4,11 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+    <!--@autor Tatiane-->
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <title>Gerenciar itens</title>
+        <title>Gerenciar Itens</title>
         <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
         <link rel="stylesheet" href="recursos/css/bootstrap.min.css"></link>
         <link href="recursos/css/theme.css" rel="stylesheet"></link>
@@ -24,7 +25,8 @@
                         <p:outputLabel value="Número de Catálogo: " />
                         <p:inputText id="filtroCpf" value="#{controleItem.filtroNumCatalogo}"/>
 
-                        <br></br>
+                        <br></br><br></br>
+                        
                         <p:outputLabel value="Tipo do Item: " />
                         <p:selectOneMenu id="filtroTipo" value="#{controleItem.filtroTipo}">
                             <f:selectItem itemLabel="" itemValue=""/>
@@ -121,13 +123,13 @@
                                 <f:facet name="header">
                                     Ação
                                 </f:facet>
-                                <h:commandButton value="Exibir Item" action="#{controleItem.exibirItem(item)}" class="btn btn-info"/>
+                                <h:commandButton value="Exibir" action="#{controleItem.exibirItem(item)}" class="btn btn-info"/>
                             </p:column>
                         </p:dataTable>
                     </div>
                 </div>
                 <br></br>
-                <p:commandButton value="Voltar" action="index.xhtml" id="voltar" class="btn btn-danger"/>
+                <a href="index.xhtml" class="btn btn-danger">Voltar</a>
             </h:form>
         </center>
     </h:body>

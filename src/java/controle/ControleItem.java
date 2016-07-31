@@ -1,14 +1,19 @@
+/**
+ *
+ * @author Igor
+ */
 package controle;
-//@author igor_
 
 import DAO.ItemDAO;
 import entidade.AcademicoPrototype;
 import entidade.ItemPrototype;
 import entidade.LivroPrototype;
 import entidade.PeriodicoPrototype;
+import java.io.IOException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean (name = "controleItem")
 @SessionScoped
@@ -32,34 +37,25 @@ public class ControleItem {
     
     private String filtroNome, filtroNumCatalogo, filtroAutor, filtroTipo;
     
-    private final ItemDAO itemDAO = new ItemDAO();
+    private ItemDAO itemDAO = new ItemDAO();
     private List itens;
     
     public ControleItem(){
     }
-    public String adicionarLivro(){
+    public void adicionarLivro() throws IOException{
         ItemPrototype livroNovo = prototipoLivro.clonar();
         livroNovo = livro;
-        livroNovo.setStatus("Disponível");
-        livroNovo.setAtivo(true);
         itemDAO.add(livroNovo);
-        return "index";
     }
-    public String adicionarAcademico(){
+    public void adicionarAcademico() throws IOException{
         ItemPrototype academicoNovo = prototipoAcademico.clonar();
         academicoNovo = academico;
-        academicoNovo.setStatus("Disponível");
-        academicoNovo.setAtivo(true);
         itemDAO.add(academicoNovo);
-        return "index";
     }
-    public String adicionarPeriodico(){
+    public void adicionarPeriodico() throws IOException{
         ItemPrototype periodicoNovo = prototipoPeriodico.clonar();
         periodicoNovo = periodico;
-        periodicoNovo.setStatus("Disponível");
-        periodicoNovo.setAtivo(true);
         itemDAO.add(periodicoNovo);
-        return "index";
     }
     public List listarItens(){
         int intVlrFiltroNumCatalogo;
@@ -113,35 +109,53 @@ public class ControleItem {
         }
         return itens;
     }
-    public String exibirItem(ItemPrototype item){
+    public void exibirItem(ItemPrototype item) throws IOException{
         String tipoItem;
         
         tipoItem = item.getTipoItem();
         switch(tipoItem){
             case "Livro":
                 this.livro = (LivroPrototype) item;
-                return "exibirLivro";
+                FacesContext.getCurrentInstance().getExternalContext().redirect("exibirLivro.xhtml");
+                break;
             case "Periodico":
                 this.periodico = (PeriodicoPrototype) item;
-                return "exibirPeriodico";
+                FacesContext.getCurrentInstance().getExternalContext().redirect("exibirPeriodico.xhtml");
+                break;
             case "Academico":
                 this.academico = (AcademicoPrototype) item;
-                return "exibirAcademico";
+                FacesContext.getCurrentInstance().getExternalContext().redirect("exibirAcademico.xhtml");
+                break;
         }
-        return "";
     }
-    public String atualizarLivro(){
-        itemDAO.atualizarItem(livro);
-        return "index";
+    public void atualizarLivro() throws IOException{
+            itemDAO.atualizarItem(livro);
     }
-    public String atualizarAcademico(){ 
+    
+    public void atualizarAcademico() throws IOException{
         itemDAO.atualizarItem(academico);
-        return "index";
     }
-    public String atualizarPeriodico(){
+    public void atualizarPeriodico() throws IOException{
         itemDAO.atualizarItem(periodico);
-        return "index";
     }
+    public void inativarAcademico() throws IOException{
+        academico.setStatus("Inativo");
+        itemDAO.atualizarItem(academico);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("gerenciarItens.xhtml");
+    }
+    
+    public void inativarLivro() throws IOException{
+        livro.setStatus("Inativo");
+        itemDAO.atualizarItem(livro);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("gerenciarItens.xhtml");
+    }
+    
+    public void inativarPeriodico() throws IOException{
+        periodico.setStatus("Inativo");
+        itemDAO.atualizarItem(periodico);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("gerenciarItens.xhtml");
+    }
+    
     public LivroPrototype getLivro() {
         return livro;
     }

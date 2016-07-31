@@ -6,7 +6,7 @@
 package controle;
 
 import DAO.PessoaDAO;
-import entidade.Usuario;
+import entidade.UsuarioPrototype;
 import java.awt.event.ActionEvent;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,7 +22,7 @@ import org.primefaces.context.RequestContext;
 @SessionScoped
 public class LoginControle {
     
-    private Usuario usuario;
+    private UsuarioPrototype usuario;
 
     public LoginControle(){}
     
@@ -50,14 +50,14 @@ public class LoginControle {
        
     }
 
-    public Usuario getUsuario() {
+    public UsuarioPrototype getUsuario() {
         if (usuario == null) {
-            usuario = new Usuario();
+            usuario = new UsuarioPrototype();
         }
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioPrototype usuario) {
         this.usuario = usuario;
     }
 }

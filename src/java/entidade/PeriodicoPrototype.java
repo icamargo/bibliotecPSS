@@ -1,5 +1,8 @@
+/**
+ *
+ * @author Igor
+ */
 package entidade;
-//@author igor_
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -11,15 +14,11 @@ public class PeriodicoPrototype extends ItemPrototype{
     private String tipoPeriodico;
     
     public PeriodicoPrototype(){
+        status = "Disponível";
     }
-    public PeriodicoPrototype(PeriodicoPrototype periodicoPrototype){
-        this.issn = periodicoPrototype.getIssn();
-        this.tipoPeriodico = periodicoPrototype.getTipoPeriodico();
-    }
-    public PeriodicoPrototype(String issn, String tipo, int numeroCatalogo, String nome, String status, int edicao, String autor, String editora, int volume, int anoPublicacao, int numPaginas, String origem, String tipoItem, float valorMultaDiaAtraso) {
-        super(numeroCatalogo, nome, status, edicao, autor, editora, volume, anoPublicacao, numPaginas, origem, tipoItem, valorMultaDiaAtraso);
-        this.issn = issn;
-        this.tipoPeriodico = tipo;
+    public PeriodicoPrototype(PeriodicoPrototype periodico){
+        this.issn = periodico.getIssn();
+        this.tipoPeriodico = periodico.getTipoPeriodico();
     }
     
     @Override
