@@ -1,19 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta charset="utf-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <title>Menu</title>
-        <link rel="icon" href="recursos/imagens/icon-livro.png"></link>
-        <link rel="stylesheet" href="recursos/css/bootstrap.css"></link>
-        <link rel="stylesheet" href="recursos/css/navbar.css"></link>
-        <link rel="stylesheet" href="recursos/css/ie10-viewport-bug-workaround.css"></link>
+        <link rel="icon" href="../recursos/imagens/icon-livro.png"></link>
+        <link rel="stylesheet" href="../recursos/css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../recursos/css/navbar.css"></link>
+        <link rel="stylesheet" href="../recursos/css/ie10-viewport-bug-workaround.css"></link>
         <style>
-            .img{background-image: url("recursos/imagens/library6.jpg");}
+            .img{background-image: url("../recursos/imagens/library6.jpg");}
         </style>
     </h:head>
 
@@ -51,39 +52,18 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="login.xhtml">Sair</a></li>
+                            <li></li>
                         </ul>
+                        <h:commandButton action="#{loginController.sair}" value="Sair"/>
                     </div>
                 </div>
             </nav>
 
             <div class="jumbotron">
-                <h1>Notificações</h1>
+                <h1>Bem vindo #{loginController.usuario.nome}, suas notificações</h1>
             </div>
-            
-            <!--<div style="margin-left: auto">
-                <div class="row placeholders">
-                    <div class="col-xs-6 col-sm-6 placeholder">
-                        <div class="panel panel-info">
-                            <div class="panel-heading"> Convocação </div>
-                            <div class="panel-body">
-                                teste
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 placeholder">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading"> Notificações </div>
-                            <div class="panel-body">
-                                teste
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="recursos/js/jquery.min.js"></script>
         <script src="recursos/js/bootstrap.min.js"></script>
         <script src="recursos/js/ie-emulation-modes-warning.js"></script>

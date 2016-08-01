@@ -130,7 +130,12 @@ public class ControlePessoa {
     }
     
     public void inativarUsuario() throws IOException{
-        usuario.setAtivo(false);
+        if(usuario.isAtivo()==true){
+            usuario.setAtivo(false);
+        }
+        else{
+            usuario.setAtivo(true);
+        }
         pessoaDAO.atualizarPessoa(usuario);
         FacesContext.getCurrentInstance().getExternalContext().redirect("gerenciarPessoas.xhtml");
     }

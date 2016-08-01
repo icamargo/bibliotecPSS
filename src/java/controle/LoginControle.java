@@ -7,47 +7,44 @@ package controle;
 
 import DAO.PessoaDAO;
 import entidade.UsuarioPrototype;
-import java.awt.event.ActionEvent;
-import javax.faces.application.FacesMessage;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Pedro
  */
-@ManagedBean
+@ManagedBean(name = "loginController")
 @SessionScoped
-public class LoginControle {
+public class LoginControle implements Serializable{
     
     private UsuarioPrototype usuario;
 
-    public LoginControle(){}
+    public LoginControle(){
+    }
     
-    public void login(){
-        RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg;
-        boolean loggedIn;
-        String pag;
+    public String logar(){
         
         PessoaDAO pessoaDAO = new PessoaDAO();
-        usuario = pessoaDAO.buscarU(usuario);
+        usuario = pessoaDAO.buscarUsuario(usuario);
         
-        if (usuario != null) {
-            loggedIn = true;
-            pag = "index.xhtml";
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem vindo", "Usuario");
-        } else {
-            loggedIn = false;
-            pag = "login.xhtml";
-            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials");
+        if(usuario != null){
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            session.setAttribute("usuario", usuario);
+            
+            return "/app/interfaceUsuario?faces-redirect=true";
         }
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("loggedIn", loggedIn);
-       
+        else{
+            return "/seguranca/login?faces-redirect=true";
+        }
+    }
+    
+    public String sair(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/seguranca/login?faces-redirect=true";
     }
 
     public UsuarioPrototype getUsuario() {

@@ -29,6 +29,9 @@
                             <p:outputLabel value="Situação: "/>
                             <p:inputText value="#{controlePessoa.usuario.situacao}" disabled="true"/>
                             
+                            <p:outputLabel value="Ativo: "/>
+                            <p:inputText value="#{controlePessoa.usuario.ativo}" disabled="true"/>
+                            
                             <p:outputLabel value="Nome: "/>
                             <p:inputText id="nomeTxt" value="#{controlePessoa.usuario.nome}" required="true" label="Nome"/>
                             
@@ -56,15 +59,9 @@
                             <p:outputLabel value="Telefone: "/>
                             <p:inputMask id="telefoneTxt" value="#{controlePessoa.usuario.telefone}" mask="(99) 9999-9999" required="true" label="Telefone"/>
                             
-                            <p:outputLabel value="Senha: "/>
-                            <p:password id="senha1" value="#{controlePessoa.usuario.senha}" match="senha2" label="Senha" required="true"/>
-                            
-                            <p:outputLabel value="Confirmar senha: "/>
-                            <p:password id="senha2" value="#{controlePessoa.usuario.senha}" label="senha2" required="true"/>
-                            
                             <br></br>
                         </h:panelGrid>
-                        <p:commandButton action="#{controlePessoa.inativarUsuario}" value="Inativar" class="btn btn-warning">
+                        <p:commandButton action="#{controlePessoa.inativarUsuario}" value="Ativar/Inativar" class="btn btn-warning">
                             <p:confirm header="Inativação" message="Confirma Inativação?" icon="ui-icon-alert"/>
                         </p:commandButton>
                         

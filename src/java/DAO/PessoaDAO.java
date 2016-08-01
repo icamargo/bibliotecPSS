@@ -17,6 +17,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
@@ -37,6 +38,15 @@ public class PessoaDAO {
         context.getExternalContext().redirect("index.xhtml");
         context.addMessage(null, new FacesMessage("Item Cadastrado com Sucesso!"));
         trans.commit();
+    }
+    
+    public UsuarioPrototype buscarUsuario(UsuarioPrototype usuario) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        String sql = "select u from UsuarioPrototype u where email=:em and senha=:pass";
+        Query query = session.createQuery(sql);
+        query.setString("em", usuario.getEmail());
+        query.setString("pass", usuario.getSenha());
+        return (UsuarioPrototype) query.uniqueResult();
     }
     
     public List<PessoaPrototype> getPessoaPorCodigo(int vlrFiltroCodigo){

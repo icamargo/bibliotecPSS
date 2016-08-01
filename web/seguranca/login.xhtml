@@ -15,7 +15,7 @@
         <h:outputScript library="js" name="sweetalert.min.js"/>
     </h:head>
     
-    <h:body styleClass="cyan lighten-5">
+    <!--<h:body styleClass="cyan lighten-5">
         <div class="valign-wrapper" id="login-page">
             <div class="container">
                 <div class="center-align">
@@ -25,7 +25,7 @@
                                 <div class="card-content" style="height: 400px">
                                         <img class="responsive-img" style="max-width: 80px;" src="http://image.flaticon.com/icons/svg/29/29302.svg"/>
                                         <div class="left-align">
-                                            <h:form id="login-form">
+                                            <h:form>
                                                 <p:growl autoUpdate="true"/>
                                                 <div class="col s12 input-field">
                                                     <h:inputText id="email" value="#{loginControle.usuario.email}" required="true" requiredMessage="É necessario o e-mail"/>
@@ -36,12 +36,12 @@
                                                     <h:outputLabel for="senha" value="Senha"/>
                                                 </div>
                                                 <div class="col s12 input-field">
-                                                    <p:commandLink value="Login" actionListener="#{loginControle.login}" styleClass="btn btn-large" oncomplete="handleLoginRequest(args)" />                               
+                                                    <p:commandButton value="Login"  styleClass="btn btn-large" action="#{loginControle.login}"/>                               
                                                 </div>                                               
                                             </h:form>
                                             <h:form>
                                                 <div class="col s12 input-field">         
-                                                    <a href="cadastrarUser.xhtml">Cadastrar usuário</a>
+                                                    <a href="cadastrarUsuario.xhtml">Cadastrar usuário</a>
                                                     <p></p>
                                                     <a href="gerenciarItens.xhtml">Consultar livros</a>
                                                 </div>
@@ -54,22 +54,15 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).on("ready",function(){
-               $("#login-page").css({'height':window.innerHeight + 'px'});
-            });
-        </script>
-        <script type="text/javascript">  
-            function handleLoginRequest(args) {  
-                if(args.validationFailed || !args.loggedIn) {  
-                    jQuery('#dialog').effect("shake", { times:3 }, 100);  
-                } else {  
-                    dlg.hide();  
-                    jQuery('#loginLink').fadeOut();
-                    window.location = "/faces/index.xhtml";
-                }  
-            }  
-        </script>
+
+    </h:body>-->
+    
+    <h:body>
+        <h:form>
+            <h:inputText value="#{loginController.usuario.email}"/>
+            <h:inputText value="#{loginController.usuario.senha}"/>
+            <h:commandButton value="logar" action="#{loginController.logar()}"/>
+        </h:form>
     </h:body>
 </html>
 
